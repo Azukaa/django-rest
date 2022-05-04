@@ -1,10 +1,12 @@
 from django.urls import path, include
-from .views import HelloApiView, HelloViewSet
+from .views import HelloApiView, HelloViewSet, UserProfileViewset
 from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
 router.register("hello-viewset", HelloViewSet, basename="hello-viewset")
+router.register("profile", UserProfileViewset)
+
 urlpatterns = [
     path("hello-view", HelloApiView.as_view(), name="hello-view"),
     path("", include(router.urls))

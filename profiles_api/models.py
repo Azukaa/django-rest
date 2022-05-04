@@ -4,8 +4,11 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 
 """Add the model manager for the custom user model created to help django interact with the model"""
+
+
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
+
     def create_user(self, email, name, password=None):
         "Create a new user profile"
         if not email:
@@ -17,7 +20,7 @@ class UserProfileManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
 
-        return user 
+        return user
 
     def create_superuser(self, email, name, password):
         user = self.create_user(email, name, password)
@@ -27,7 +30,9 @@ class UserProfileManager(BaseUserManager):
 
         user.save(using=self._db)
         return user
-class UserProfile(AbstractBaseUser,PermissionsMixin):
+
+
+class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
@@ -43,7 +48,10 @@ class UserProfile(AbstractBaseUser,PermissionsMixin):
         """Retrieve full name of user"""
         return self.name
 
+    def get_email(self):
+        """Retrieve email of user"""
+        return self.email
+
     def __str__(self):
         """Return string representation of user"""
         return self.email
-    
