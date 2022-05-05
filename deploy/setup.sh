@@ -9,7 +9,7 @@ PROJECT_BASE_PATH='/usr/local/apps/profiles-rest-api'
 
 echo "Installing dependencies..."
 apt-get update
-apt-get install -y python3-dev python3-venv postgresql postgresql-contrib python-pip supervisor nginx git
+apt-get install -y python3-dev python3-venv psycopg2-binary postgresql postgresql-contrib python-pip supervisor nginx git
 
 # Create project directory
 mkdir -p $PROJECT_BASE_PATH
